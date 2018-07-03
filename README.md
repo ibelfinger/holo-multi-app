@@ -7,7 +7,7 @@
 
 
 
-`cd holo-multi-reader`
+`cd ../holo-multi-reader`
 
 `hcadmin join . holo-multi-reader`
 
