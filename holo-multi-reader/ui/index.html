@@ -1,0 +1,41 @@
+<html>
+<head>
+    <script type="text/javascript" src="/hc.js"></script>
+    <script type="text/javascript" src="/moment.min.js"></script>
+</head>
+<body>
+<form>
+    <p>Welcome to Holo Wall by Exaltum</p>
+    <label for="entry">Say something...</label>
+    <input type="text" id="holoWorldEntry" size="50" placeholder="...I'm giving up on you"/>
+    <button type="submit" id="submitEntry">Submit</button>
+</form>
+
+<form>
+    <p>Press the Read button to read all messages</p>
+    <div id="wall"></div>
+
+</form>
+
+<script type="text/javascript">
+    document.getElementById("submitEntry").addEventListener("click", function (event) {
+        event.preventDefault()
+        holoTextWrite(document.getElementById('holoWorldEntry').value, function (hash) {
+            document.getElementById('holoWorldEntry').value = ""
+        })
+    });
+
+    setInterval(function () {
+        holoTextRead(function (task) {
+            var entriesHtml = '';
+            for(i=0; i<task.length; i++) {
+                var timeStr = moment(task[i].timestamp).format('DD.MM.YYYY HH:mm:ss');
+                entriesHtml += '(' + timeStr + ') ' + task[i].agent + ': ' + task[i].text + '<br>';
+            }
+            document.getElementById('wall').innerHTML = entriesHtml;
+        })
+    }, 1000);
+
+</script>
+</body>
+</html>

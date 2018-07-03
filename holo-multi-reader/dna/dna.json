@@ -1,0 +1,39 @@
+{
+    "Version": 1,
+    "UUID": "946d0e9c-58de-11e8-92d6-f45c89ad9ae1",
+    "Name": "MultiReader",
+    "Properties": {
+        "description": "Read messages from multi app",
+        "language": "en"
+    },
+    "PropertiesSchemaFile": "properties_schema.json",
+    "RequiresVersion": 24,
+    "DHTConfig": {
+        "HashType": "sha2-256",
+        "NeighborhoodSize": 0
+    },
+    "Zomes": [
+        {
+            "Name": "multiReader",
+            "Description": "read data",
+            "CodeFile": "multiReader.js",
+            "RibosomeType": "js",
+            "BridgeFuncs": ["holoReceive"],
+            "Config": null,
+            "Entries": [
+                {
+                    "Name": "holoText",
+                    "DataFormat": "string",
+                    "Sharing": "public"
+                }
+            ],
+            "Functions": [
+                {
+                    "Name": "holoReceive",
+                    "CallingType": "string",
+                    "Exposure": "public"
+                }
+            ]
+        }
+    ]
+}
